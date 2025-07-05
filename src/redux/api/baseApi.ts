@@ -16,14 +16,18 @@ type UpdateBookInput = {
 };
 export const baseApi = createApi({
   reducerPath: "baseApi",
-  baseQuery: fetchBaseQuery({
-    baseUrl: "https://assignment04-server.smanas.net/api",
-  }),
-  // baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000/api" }),
+  // baseQuery: fetchBaseQuery({
+  //   baseUrl: "https://assignment04-server.smanas.net/api",
+  // }),
+  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000/api" }),
   tagTypes: ["Books"],
   endpoints: (builder) => ({
     getBooks: builder.query<IBookData, void>({
       query: () => "/books",
+      providesTags: ["Books"],
+    }),
+    getSingleBook: builder.query<IBookData, string>({
+      query: (id) => `/books/${id}`,
       providesTags: ["Books"],
     }),
     createBook: builder.mutation({
@@ -81,4 +85,5 @@ export const {
   useUpdateBookMutation,
   useCreateBorrowMutation,
   useGetBorrowQuery,
+  useGetSingleBookQuery,
 } = baseApi;
