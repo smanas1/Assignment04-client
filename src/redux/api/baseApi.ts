@@ -5,6 +5,15 @@ interface IBookData {
   data?: IBook[];
 }
 
+type UpdateBookInput = {
+  title: string;
+  author: string;
+  genre: string;
+  isbn: string;
+  description: string;
+  copies: number;
+  available: boolean;
+};
 export const baseApi = createApi({
   reducerPath: "baseApi",
   baseQuery: fetchBaseQuery({
@@ -32,8 +41,17 @@ export const baseApi = createApi({
       }),
       invalidatesTags: ["Books"],
     }),
-    updateBook: builder.mutation({
-      query: ({ _id, data }: { _id: string; data: IBook }) => ({
+    updateBook: builder.mutation<
+      { _id: string; data: IBook },
+      { _id: string; data: Partial<UpdateBookInput> }
+    >({
+      query: ({
+        _id,
+        data,
+      }: {
+        _id: string;
+        data: Partial<UpdateBookInput>;
+      }) => ({
         url: `/books/${_id}`,
         method: "PUT",
         body: data,

@@ -57,7 +57,10 @@ export function EditBookDialog({ bookData }: any) {
     try {
       await updateBook({
         _id: bookData._id,
-        data: formData,
+        data: {
+          ...formData,
+          available: formData.available === "true" ? true : false,
+        },
       }).unwrap();
       toast.success("Book updated successfully!", {
         duration: 5000,
