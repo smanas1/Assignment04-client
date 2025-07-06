@@ -4,8 +4,8 @@ import { Link } from "react-router";
 const Footer = () => {
   return (
     <div className="mt-auto">
-      <footer className="flex w-full  flex-col md:flex-row items-start md:items-center justify-start gap-2 p-4  border-t">
-        <Link to={"/"} className="order-1 md:order-none">
+      <footer className="flex w-full  flex-col md:flex-row   md:items-center justify-start gap-2 p-4  border-t">
+        <Link to={"/"} className="order-1 max-md:text-center md:order-none">
           LibraHub
         </Link>
         {/* <nav className="order-3 md:order-none flex-1 justify-center grid md:flex">
@@ -34,7 +34,7 @@ const Footer = () => {
             rights reserved
           </div>
         </div>
-        <div className="order-2 md:order-none flex  max-w-xs items-center justify-end gap-4">
+        <div className="order-2 md:order-none flex  justify-center md:max-w-xs items-center md:justify-end gap-4">
           <Link
             to={"https://github.com/smanas1/Assignment04-client"}
             className="inline-flex h-8 items-center rounded-full border border-gray-200 dark:border-gray-800 shadow-sm w-8 hover:scale-125 hover:rotate-12 transition-transform p-2"

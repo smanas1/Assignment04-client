@@ -9,7 +9,7 @@ function App() {
   return (
     <div className="h-screen flex flex-col">
       <div className="container mx-auto">
-        <div className="flex justify-evenly mt-5">
+        <div className="flex max-md:flex-col max-md:justify-center max-md:items-center max-md:gap-4  justify-evenly mt-5">
           <Link to={"/"} className="flex items-center">
             <BookOpen size={30} />
             <h1 className="text-lg font-bold ms-2">LibraHub </h1>

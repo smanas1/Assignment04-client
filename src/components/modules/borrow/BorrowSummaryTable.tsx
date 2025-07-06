@@ -21,7 +21,7 @@ const BorrowSummaryTable = () => {
   const { data, isLoading } = useGetBorrowQuery(undefined);
 
   return (
-    <div className="mt-7 w-1/2 mx-auto">
+    <div className="mt-7 max-md:p-3 lg:w-1/2 mx-auto">
       {isLoading ? (
         <div className="flex justify-center items-center h-96">
           <Loader2 className="animate-spin" />

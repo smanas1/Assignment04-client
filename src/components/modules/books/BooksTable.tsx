@@ -18,9 +18,9 @@ const BooksTable = () => {
   const { data, isLoading } = useGetBooksQuery(undefined);
 
   return (
-    <div>
-      <div className="flex justify-between items-center pe-40">
-        <h1 className="font-bold text-2xl mt-7">Books</h1>
+    <div className="max-md:p-3">
+      <div className="flex justify-between items-center max-md:p-2.5 xl:pe-24  md:pe-10  2xl:pe-40">
+        <h1 className="font-bold text-2xl  md:mt-7">Books</h1>
 
         <Link to="/create-book">
           <Button>Add New Book</Button>
