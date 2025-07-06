@@ -1,4 +1,9 @@
-import type { IBook } from "@/types/bookTypes";
+import type { CreateBookInput, IBook, IBookResponse } from "@/types/bookTypes";
+import type {
+  CreateBorrowInput,
+  IBorrowData,
+  IBorrowResponse,
+} from "@/types/borrowTypes";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 interface IBookData {
@@ -16,10 +21,10 @@ type UpdateBookInput = {
 };
 export const baseApi = createApi({
   reducerPath: "baseApi",
-  // baseQuery: fetchBaseQuery({
-  //   baseUrl: "https://assignment04-server.smanas.net/api",
-  // }),
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000/api" }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: "https://assignment04-server.smanas.net/api",
+  }),
+
   tagTypes: ["Books"],
   endpoints: (builder) => ({
     getBooks: builder.query<IBookData, void>({
@@ -30,8 +35,8 @@ export const baseApi = createApi({
       query: (id) => `/books/${id}`,
       providesTags: ["Books"],
     }),
-    createBook: builder.mutation({
-      query: (bookData) => ({
+    createBook: builder.mutation<IBookResponse, CreateBookInput>({
+      query: (bookData: CreateBookInput) => ({
         url: "/books",
         method: "POST",
         body: bookData,
@@ -63,12 +68,12 @@ export const baseApi = createApi({
       invalidatesTags: ["Books"],
     }),
     // BORROW
-    getBorrow: builder.query({
+    getBorrow: builder.query<IBorrowData, void>({
       query: () => "/borrow",
       providesTags: ["Books"],
     }),
-    createBorrow: builder.mutation({
-      query: (borrowData) => ({
+    createBorrow: builder.mutation<IBorrowResponse, CreateBorrowInput>({
+      query: (borrowData: CreateBorrowInput) => ({
         url: "/borrow",
         method: "POST",
         body: borrowData,

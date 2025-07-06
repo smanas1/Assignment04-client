@@ -24,16 +24,19 @@ import { useState } from "react";
 import type { IBook } from "@/types/bookTypes";
 import { useCreateBorrowMutation } from "@/redux/api/baseApi";
 import { toast, Toaster } from "sonner";
+import { useNavigate } from "react-router";
 
 interface IBorrowFormProps {
   bookData: IBook;
 }
 const BorrowForm = ({ bookData }: IBorrowFormProps) => {
   const [open, setOpen] = useState(false);
-  const [dialogOpen, setDialogOpen] = useState(false);
+  // const [dialogOpen, setDialogOpen] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const [date, setDate] = useState<Date | undefined>(undefined);
   const [borrowBook, { isLoading }] = useCreateBorrowMutation();
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -44,11 +47,14 @@ const BorrowForm = ({ bookData }: IBorrowFormProps) => {
         quantity,
         dueDate: date,
       }).unwrap();
-      setDialogOpen(false);
+
       toast.success("Book borrowed successfully!", {
         duration: 5000,
         richColors: true,
       });
+      setTimeout(() => {
+        navigate("/borrow-summary");
+      }, 1000);
     } catch (error) {
       const errorMessage =
         typeof error === "object" &&
@@ -67,7 +73,7 @@ const BorrowForm = ({ bookData }: IBorrowFormProps) => {
     }
   };
   return (
-    <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+    <Dialog>
       <form>
         <Toaster />
         <DialogTrigger asChild>
@@ -121,6 +127,9 @@ const BorrowForm = ({ bookData }: IBorrowFormProps) => {
                       mode="single"
                       selected={date}
                       captionLayout="dropdown"
+                      disabled={(date) =>
+                        date <= new Date() || date < new Date("1900-01-01")
+                      }
                       onSelect={(date) => {
                         setDate(date);
                         setOpen(false);
@@ -143,7 +152,7 @@ const BorrowForm = ({ bookData }: IBorrowFormProps) => {
                   type="submit"
                   className="bg-blue-500 hover:bg-indigo-300"
                 >
-                  Borrow
+                  Confirm
                 </Button>
               )}
             </DialogFooter>

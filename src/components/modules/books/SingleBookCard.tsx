@@ -13,10 +13,11 @@ import type { IBook } from "@/types/bookTypes";
 import { Link, useParams } from "react-router";
 import BorrowForm from "../borrow/BorrowForm";
 import { Button } from "@/components/ui/button";
+import { Loader2 } from "lucide-react";
 
 const SingleBookCard = () => {
   const { id } = useParams<{ id?: string }>();
-  const { data } = useGetSingleBookQuery(id ?? "");
+  const { data, isLoading } = useGetSingleBookQuery(id ?? "");
 
   const Book: IBook | undefined = Array.isArray(data?.data)
     ? data?.data[0]
@@ -57,6 +58,10 @@ const SingleBookCard = () => {
             {Book && <BorrowForm bookData={Book} />}
           </CardFooter>
         </>
+      ) : isLoading ? (
+        <div className="flex justify-center items-center ">
+          <Loader2 className="animate-spin" />
+        </div>
       ) : (
         <h1>Your book is not available</h1>
       )}

@@ -36,6 +36,7 @@ export function CreateBookForm() {
     isbn: "",
     description: "",
     copies: 0,
+    available: true,
   });
 
   const handleChange = (
@@ -66,6 +67,7 @@ export function CreateBookForm() {
         isbn: "",
         description: "",
         copies: 0,
+        available: true,
       });
       navigate("/books");
     } catch (error) {
