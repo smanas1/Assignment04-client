@@ -50,10 +50,16 @@ const BooksTable = () => {
                 <TableCell>{book.author}</TableCell>
                 <TableCell>{book.genre}</TableCell>
                 <TableCell>{book.isbn}</TableCell>
-                <TableCell>{book.copies}</TableCell>
+                <TableCell>
+                  <Badge className="bg-gray-700 dark:bg-gray-300">
+                    {book.copies}
+                  </Badge>
+                </TableCell>
                 <TableCell>
                   {book.available ? (
-                    <Badge variant={"default"}>Available</Badge>
+                    <Badge className="bg-emerald-600 " variant={"default"}>
+                      Available
+                    </Badge>
                   ) : (
                     <Badge variant={"destructive"}>Unavailable</Badge>
                   )}
@@ -62,7 +68,10 @@ const BooksTable = () => {
                   <EditBookDialog bookData={book} />
                   <DeleteBookAlert bookId={book._id} />
                   <Link to={`/books/${book._id}`}>
-                    <Button size={"sm"} className="bg-emerald-500">
+                    <Button
+                      size={"sm"}
+                      className="bg-blue-500 hover:bg-blue-400"
+                    >
                       Borrow
                     </Button>
                   </Link>

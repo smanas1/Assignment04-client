@@ -97,9 +97,7 @@ export function EditBookDialog({ bookData }: any) {
       <Toaster />
       <div>
         <DialogTrigger asChild>
-          <Button className="bg-amber-500 hover:bg-amber-300" size={"sm"}>
-            Edit
-          </Button>
+          <Button size={"sm"}>Edit</Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>

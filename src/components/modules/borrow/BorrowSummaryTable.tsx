@@ -1,3 +1,4 @@
+import { Badge } from "@/components/ui/badge";
 import {
   Table,
   TableBody,
@@ -47,7 +48,9 @@ const BorrowSummaryTable = () => {
                     </TableCell>
                     <TableCell>{item.book.isbn}</TableCell>
                     <TableCell className="text-center">
-                      {item.totalQuantity}
+                      <Badge className="bg-gray-700 dark:bg-gray-300">
+                        {item.totalQuantity}
+                      </Badge>
                     </TableCell>
                   </TableRow>
                 )
