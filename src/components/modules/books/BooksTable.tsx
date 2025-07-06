@@ -13,7 +13,6 @@ import { Loader2 } from "lucide-react";
 import DeleteBookAlert from "./DeleteBookAlert";
 import { Link } from "react-router";
 import { EditBookDialog } from "./EditBookDialog";
-import BorrowForm from "../borrow/BorrowForm";
 
 const BooksTable = () => {
   const { data, isLoading } = useGetBooksQuery(undefined);
@@ -62,7 +61,11 @@ const BooksTable = () => {
                 <TableCell className="flex">
                   <EditBookDialog bookData={book} />
                   <DeleteBookAlert bookId={book._id} />
-                  <BorrowForm bookData={book} />
+                  <Link to={`/books/${book._id}`}>
+                    <Button size={"sm"} className="bg-emerald-500">
+                      Borrow
+                    </Button>
+                  </Link>
                 </TableCell>
               </TableRow>
             ))}

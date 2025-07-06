@@ -72,15 +72,11 @@ const BorrowForm = ({ bookData }: IBorrowFormProps) => {
         <Toaster />
         <DialogTrigger asChild>
           {bookData.available ? (
-            <Button size={"sm"} className="bg-blue-500 hover:bg-indigo-300">
+            <Button className="bg-emerald-500 hover:bg-emerald-300">
               Borrow
             </Button>
           ) : (
-            <Button
-              disabled
-              size={"sm"}
-              className="bg-blue-500 hover:bg-indigo-300"
-            >
+            <Button disabled className="bg-emerald-500 hover:bg-emerald-300">
               Borrow
             </Button>
           )}

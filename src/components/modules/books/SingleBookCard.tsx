@@ -10,8 +10,9 @@ import {
 
 import { useGetSingleBookQuery } from "@/redux/api/baseApi";
 import type { IBook } from "@/types/bookTypes";
-import { useParams } from "react-router";
+import { Link, useParams } from "react-router";
 import BorrowForm from "../borrow/BorrowForm";
+import { Button } from "@/components/ui/button";
 
 const SingleBookCard = () => {
   const { id } = useParams<{ id?: string }>();
@@ -49,7 +50,10 @@ const SingleBookCard = () => {
               </p>
             </div>
           </CardContent>
-          <CardFooter className="flex justify-center items-center">
+          <CardFooter className="flex justify-center gap-5 items-center">
+            <Link to="/books">
+              <Button className="bg-rose-400 hover:bg-rose-300">Back</Button>
+            </Link>
             {Book && <BorrowForm bookData={Book} />}
           </CardFooter>
         </>
